@@ -24,13 +24,11 @@ export class CharactersService {
       });
   }
 
-  getCharactersByPage(page: number) {
-    const params = new HttpParams().set('page', page.toString());
-    this.getCharacters(params);
-  }
+  getCharactersByPageAndName(page: number, name: string) {
+    const params = new HttpParams()
+    .set('page', page.toString())
+    .set('name', name);
 
-  filterCharactersByName(name: string) {
-    const params = new HttpParams().set('name', name);
     this.getCharacters(params);
   }
 
