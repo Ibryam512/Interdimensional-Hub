@@ -9,7 +9,11 @@ import { ListResponse } from '../models/response.model';
 export class HttpService {
   constructor(private http: HttpClient) {}
 
-  get<T>(url: string, params?: HttpParams): Observable<ListResponse<T>> {
+  getAll<T>(url: string, params?: HttpParams): Observable<ListResponse<T>> {
     return this.http.get<ListResponse<T>>(url, { params,  responseType: 'json'});
+  }
+
+  get<T>(url: string, params?: HttpParams): Observable<T> {
+    return this.http.get<T>(url, { params, responseType: 'json' });
   }
 }

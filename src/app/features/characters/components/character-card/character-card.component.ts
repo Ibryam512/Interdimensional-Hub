@@ -3,6 +3,7 @@ import { Character } from '../../character.model';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { CharactersService } from '../../characters.service';
 
 @Component({
   selector: 'app-character-card',
@@ -13,4 +14,15 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class CharacterCardComponent {
     @Input() character: Character = {} as Character;
+    @Input() isFavorite = false;
+
+    constructor(private characterService: CharactersService) {}
+
+    processCharacter() {
+        if (this.isFavorite) {
+            this.characterService.removeCharacter(this.character);
+        } else {
+            this.characterService.saveCharacter(this.character);
+        }
+    }
 }
