@@ -29,6 +29,11 @@ export class CharactersService {
     this.getCharacters(params);
   }
 
+  filterCharactersByName(name: string) {
+    const params = new HttpParams().set('name', name);
+    this.getCharacters(params);
+  }
+
   getCharacterById(id: number) {
     return this.httpService.get<Character>(
       `https://rickandmortyapi.com/api/character/${id}`
@@ -62,7 +67,7 @@ export class CharactersService {
     if (this.favoriteCharacters.some((c) => c.id === character.id)) {
         return;
     }
-    
+
     this.favoriteCharacters.push(character);
     localStorage.setItem('characters', JSON.stringify(this.favoriteCharacters));
     this.favoriteCharactersChanged.next(this.getFavoriteCharacters());
