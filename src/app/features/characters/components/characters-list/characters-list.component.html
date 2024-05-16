@@ -1,0 +1,11 @@
+<div class="header">
+    <h3>All Characters</h3>
+    <mat-divider></mat-divider>
+</div>
+<mat-paginator [length]="100" [pageSize]="10">
+</mat-paginator>
+<div class="list">
+    @for (character of characters; track $index) {
+    <app-character-card [character]="character"></app-character-card>
+    }
+</div>
