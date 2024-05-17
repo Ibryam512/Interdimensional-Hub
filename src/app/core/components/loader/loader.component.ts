@@ -18,7 +18,7 @@ export class LoaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isLoading = this.loaderService.isLoading.subscribe((isVisible) => {
-      this.isVisible = !isVisible;
+      this.isVisible = isVisible;
     });
   }
 

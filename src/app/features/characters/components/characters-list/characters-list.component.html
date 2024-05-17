@@ -1,9 +1,9 @@
 @if (favouriteCharacters.results && favouriteCharacters.results.length > 0) {
 <div class="header">
-    <h3>Favourite Characters</h3>
+    <h1>Favourite Characters</h1>
 </div>
 <mat-divider></mat-divider>
-<mat-paginator [length]="favouriteCharacters.info.count" [pageSize]="5" (page)="handleFavouritePageEvent($event)">
+<mat-paginator [length]="favouriteCharacters.info.count" [pageSize]="favouriteCharactersCountPerPage" (page)="handleFavouritePageEvent($event)">
 </mat-paginator>
 <div class="list">
     @for (character of favouriteCharacters.results; track $index) {
@@ -13,17 +13,11 @@
 }
 
 <div class="header">
-    <h3>All Characters</h3>
-    <div class="search">
-        <mat-form-field>
-            <mat-label>Search</mat-label>
-            <input matInput type="text" [(ngModel)]="value" (keydown.enter)="onSearch()">
-        </mat-form-field>
-        <button mat-flat-button color="primary" (click)="onSearch()">Search</button>
-    </div>
+    <h1>All Characters</h1>
+    <app-search type="characters"></app-search>
 </div>
 <mat-divider></mat-divider>
-<mat-paginator [length]="response.info.count" [pageSize]="20" (page)="handlePageEvent($event)">
+<mat-paginator [length]="response.info.count" [pageSize]="charactersCountPerPage" (page)="handlePageEvent($event)">
 </mat-paginator>
 <div class="list">
     @for (character of response.results; track $index) {
