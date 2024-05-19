@@ -36,7 +36,6 @@ export class CharactersListComponent implements OnInit, OnDestroy {
   private charactersChanged!: Subscription; //TODO: fix this
   private favouriteCharacterChanged!: Subscription;
 
-  value: string = '';
   charactersCountPerPage = CHARACTERS_COUNT_PER_PAGE;
   favouriteCharactersCountPerPage = FAVOURITE_CHARACTERS_COUNT_PER_PAGE;
 
@@ -45,7 +44,6 @@ export class CharactersListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.charactersService.getCharacters();
     this.charactersChanged = this.charactersService.charactersChanged.subscribe(
       (response: ListResponse<Character>) => {
         this.response = response;
@@ -58,6 +56,8 @@ export class CharactersListComponent implements OnInit, OnDestroy {
           this.favouriteCharacters = response;
         }
       );
+
+    this.charactersService.getCharacters();
   }
 
   ngOnDestroy(): void {
@@ -66,10 +66,7 @@ export class CharactersListComponent implements OnInit, OnDestroy {
   }
 
   handlePageEvent(e: PageEvent) {
-    this.charactersService.getCharactersByPageAndName(
-      e.pageIndex + 1,
-      this.value
-    );
+    this.charactersService.getCharactersByPage(e.pageIndex + 1);
   }
 
   handleFavouritePageEvent(e: PageEvent) {

@@ -11,6 +11,7 @@ import { FAVOURITE_CHARACTERS_COUNT_PER_PAGE } from '../../shared/constants/pagi
 })
 export class CharactersService {
   private favoriteCharacters: Character[] = [];
+  private searchValue: string = '';
 
   charactersChanged = new Subject<ListResponse<Character>>();
   favoriteCharactersChanged = new Subject<ListResponse<Character>>();
@@ -40,12 +41,18 @@ export class CharactersService {
       });
   }
 
-  getCharactersByPageAndName(page: number, name: string) {
+  getCharactersByPage(page: number) {
     const params = new HttpParams()
       .set('page', page.toString())
-      .set('name', name);
+      .set('name', this.searchValue);
 
     this.getCharacters(params);
+  }
+
+  getCharactersByName(value: string) {
+    this.searchValue = value;
+
+    this.getCharactersByPage(1);
   }
 
   getFavoriteCharacters(page?: number) {

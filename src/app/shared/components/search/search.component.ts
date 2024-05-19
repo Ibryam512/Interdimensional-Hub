@@ -21,7 +21,7 @@ export class SearchComponent {
   onSearch() {
     switch (this.type) {
         case 'characters':
-            this.charactersService.getCharactersByPageAndName(1, this.value);
+            this.charactersService.getCharactersByName(this.value);
             break;
     }
   }
