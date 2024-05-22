@@ -14,7 +14,6 @@ import {
   FAVOURITE_CHARACTERS_COUNT_PER_PAGE,
 } from '../../../../shared/constants/pagination.constants';
 import { SearchComponent } from '../../../../shared/components/search/search.component';
-import { LoaderService } from '../../../../core/services/loader.service';
 
 @Component({
   selector: 'app-characters-list',
@@ -40,10 +39,7 @@ export class CharactersListComponent implements OnInit, OnDestroy {
   charactersCountPerPage = CHARACTERS_COUNT_PER_PAGE;
   favouriteCharactersCountPerPage = FAVOURITE_CHARACTERS_COUNT_PER_PAGE;
 
-  constructor(
-    private charactersService: CharactersService,
-    private loaderService: LoaderService
-  ) {
+  constructor(private charactersService: CharactersService) {
     this.favouriteCharacters = this.charactersService.getFavoriteCharacters();
   }
 

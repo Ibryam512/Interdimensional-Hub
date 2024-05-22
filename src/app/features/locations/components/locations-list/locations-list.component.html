@@ -1,1 +1,15 @@
-<p>locations-list works!</p>
+<div class="header">
+    <h1>Locations</h1>
+    <app-search (search)="onSearch($event)"></app-search>
+</div>
+<mat-divider></mat-divider>
+<mat-paginator [length]="response.info.count" [pageSize]="locationsCountPerPage" (page)="handlePageEvent($event)">
+</mat-paginator>
+<div class="list">
+    @for (location of response.results; track $index) {
+    <app-location-card [location]="location"></app-location-card>
+    }
+    @empty {
+    <p>No result.</p>
+    }
+</div>
