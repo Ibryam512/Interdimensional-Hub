@@ -1,8 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { CharactersService } from '../../../features/characters/characters.service';
 import { MatButton } from '@angular/material/button';
 
 @Component({
@@ -13,16 +12,12 @@ import { MatButton } from '@angular/material/button';
   styleUrl: './search.component.scss',
 })
 export class SearchComponent {
-  @Input() type: 'characters' | 'locations' | 'episodes' = 'characters';
-  value: string = '';
+  @Output() search = new EventEmitter<string>();
+  value: string = ''; 
 
-  constructor(private charactersService: CharactersService) {}
+  constructor() {}
 
   onSearch() {
-    switch (this.type) {
-        case 'characters':
-            this.charactersService.getCharactersByName(this.value);
-            break;
-    }
+    this.search.emit(this.value);
   }
 }

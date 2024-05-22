@@ -14,7 +14,7 @@
 
 <div class="header">
     <h1>All Characters</h1>
-    <app-search type="characters"></app-search>
+    <app-search (search)="onSearch($event)"></app-search>
 </div>
 <mat-divider></mat-divider>
 <mat-paginator [length]="response.info.count" [pageSize]="charactersCountPerPage" (page)="handlePageEvent($event)">

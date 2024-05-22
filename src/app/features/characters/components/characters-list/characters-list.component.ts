@@ -40,7 +40,10 @@ export class CharactersListComponent implements OnInit, OnDestroy {
   charactersCountPerPage = CHARACTERS_COUNT_PER_PAGE;
   favouriteCharactersCountPerPage = FAVOURITE_CHARACTERS_COUNT_PER_PAGE;
 
-  constructor(private charactersService: CharactersService, private loaderService: LoaderService) {
+  constructor(
+    private charactersService: CharactersService,
+    private loaderService: LoaderService
+  ) {
     this.favouriteCharacters = this.charactersService.getFavoriteCharacters();
   }
 
@@ -74,5 +77,9 @@ export class CharactersListComponent implements OnInit, OnDestroy {
     this.favouriteCharacters = this.charactersService.getFavoriteCharacters(
       e.pageIndex + 1
     );
+  }
+
+  onSearch(value: string) {
+    this.charactersService.getCharactersByName(value);
   }
 }
