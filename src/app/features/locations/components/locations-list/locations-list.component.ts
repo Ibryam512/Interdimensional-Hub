@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SearchComponent } from '../../../../shared/components/search/search.component';
 import { LocationCardComponent } from '../location-card/location-card.component';
 import { MatDivider } from '@angular/material/divider';
@@ -7,7 +7,7 @@ import { ListResponse } from '../../../../core/models/list-response.model';
 import { Subscription } from 'rxjs';
 import { Location } from '../../location.model';
 import { LocationsService } from '../../locations.service';
-import { LOCATIONS_COUNT_PER_PAGE } from '../../../../shared/constants/pagination.constants';
+import { COUNT_PER_PAGE } from '../../../../shared/constants/pagination.constants';
 
 @Component({
   selector: 'app-locations-list',
@@ -16,11 +16,11 @@ import { LOCATIONS_COUNT_PER_PAGE } from '../../../../shared/constants/paginatio
   templateUrl: './locations-list.component.html',
   styleUrl: './locations-list.component.scss'
 })
-export class LocationsListComponent {
+export class LocationsListComponent implements OnInit, OnDestroy {
     public response!: ListResponse<Location>;
     private locationsChanged!: Subscription; //TODO: fix this
   
-    locationsCountPerPage = LOCATIONS_COUNT_PER_PAGE;
+    locationsCountPerPage = COUNT_PER_PAGE;
   
     constructor(private locationsService: LocationsService) { }
   

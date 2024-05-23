@@ -1,1 +1,14 @@
-<p>episodes-list works!</p>
+<div class="header">
+    <h1>Episodes</h1>
+    <app-search (search)="onSearch($event)"></app-search>
+</div>
+<mat-divider></mat-divider>
+<mat-paginator [length]="response.info.count" [pageSize]="episodesCountPerPage" (page)="handlePageEvent($event)">
+</mat-paginator>
+<div class="list">
+    <mat-selection-list (selectionChange)="onSelect($event)">
+        @for (episode of response.results; track $index) {
+            <app-episode-item [episode]="episode"></app-episode-item>
+        }
+    </mat-selection-list>
+</div>

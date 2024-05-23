@@ -10,7 +10,7 @@ import { ListResponse } from '../../../../core/models/list-response.model';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {
-  CHARACTERS_COUNT_PER_PAGE,
+  COUNT_PER_PAGE,
   FAVOURITE_CHARACTERS_COUNT_PER_PAGE,
 } from '../../../../shared/constants/pagination.constants';
 import { SearchComponent } from '../../../../shared/components/search/search.component';
@@ -36,7 +36,7 @@ export class CharactersListComponent implements OnInit, OnDestroy {
   private charactersChanged!: Subscription; //TODO: fix this
   private favouriteCharacterChanged!: Subscription;
 
-  charactersCountPerPage = CHARACTERS_COUNT_PER_PAGE;
+  charactersCountPerPage = COUNT_PER_PAGE;
   favouriteCharactersCountPerPage = FAVOURITE_CHARACTERS_COUNT_PER_PAGE;
 
   constructor(private charactersService: CharactersService) {
