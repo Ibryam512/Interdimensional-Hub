@@ -8,17 +8,18 @@ import { EpisodeItemComponent } from '../episode-item/episode-item.component';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { SearchComponent } from '../../../../shared/components/search/search.component';
 import { COUNT_PER_PAGE } from '../../../../shared/constants/pagination.constants';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-episodes-list',
   standalone: true,
-  imports: [EpisodeItemComponent, SearchComponent, MatListModule, MatPaginator],
+  imports: [EpisodeItemComponent, SearchComponent, MatButtonModule, MatListModule, MatPaginator],
   templateUrl: './episodes-list.component.html',
   styleUrl: './episodes-list.component.scss',
 })
 export class EpisodesListComponent implements OnInit, OnDestroy {
   public response!: ListResponse<Episode>;
-  private episodesChanged!: Subscription; //TODO: fix this
+  private episodesChanged!: Subscription;
 
   episodesCountPerPage = COUNT_PER_PAGE;
 
@@ -50,6 +51,10 @@ export class EpisodesListComponent implements OnInit, OnDestroy {
     const selectedOptions = e.source.selectedOptions.selected;
     const selectedItems = selectedOptions.map(option => option.value);
     
-    this.episodesService.toggleWatchedEpisode(selectedItems);
+    this.episodesService.toggleWatchedEpisodes(selectedItems);
+  }
+
+  reset() {
+    this.episodesService.resetWatchedEpisodes();
   }
 }

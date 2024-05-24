@@ -18,7 +18,6 @@ export class CharactersService {
 
   constructor(private httpService: HttpService) {}
 
-  //TODO: move the conn string somewhere else
   getCharacters(params?: HttpParams) {
     this.httpService
       .getAll<Character>('https://rickandmortyapi.com/api/character', params)

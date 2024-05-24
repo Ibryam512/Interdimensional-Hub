@@ -15,7 +15,6 @@ export class LocationsService {
 
   constructor(private httpService: HttpService) {}
 
-  //TODO: move the conn string somewhere else
   getLocations(params?: HttpParams) {
     this.httpService
       .getAll<Location>('https://rickandmortyapi.com/api/location', params)

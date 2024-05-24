@@ -19,7 +19,6 @@ export class EpisodesService {
     this.watchedEpisodes = watched ? JSON.parse(watched) : [];
   }
 
-  //TODO: move the conn string somewhere else
   getEpisodes(params?: HttpParams) {
     this.httpService
       .getAll<Episode>('https://rickandmortyapi.com/api/episode', params)
@@ -68,17 +67,24 @@ export class EpisodesService {
     this.getEpisodes(params);
   }
 
-  toggleWatchedEpisode(episodes: Episode[]) {
+  toggleWatchedEpisodes(episodes: Episode[]) {
     this.watchedEpisodes = this.getUniqueWatchedEpisodes(this.watchedEpisodes, episodes);
 
+    localStorage.setItem('watched', JSON.stringify(this.watchedEpisodes));
+  }
+
+  resetWatchedEpisodes() {
+    this.watchedEpisodes.map((episode) => episode.watched = false);
+
+    this.watchedEpisodes = [];
     localStorage.setItem('watched', JSON.stringify(this.watchedEpisodes));
   }
 
   private getUniqueWatchedEpisodes(watchedEpisodes: Episode[], newWatchedEpisodes: Episode[]): Episode[] {
     const map = new Map<number, Episode>();
 
-    watchedEpisodes.forEach(episode => map.set(episode.id, episode));
-    newWatchedEpisodes.forEach(episode => map.set(episode.id, episode));
+    watchedEpisodes.forEach((episode) => map.set(episode.id, episode));
+    newWatchedEpisodes.forEach((episode) => map.set(episode.id, episode));
 
     return Array.from(map.values());
   }

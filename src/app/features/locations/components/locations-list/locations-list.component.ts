@@ -18,7 +18,7 @@ import { COUNT_PER_PAGE } from '../../../../shared/constants/pagination.constant
 })
 export class LocationsListComponent implements OnInit, OnDestroy {
     public response!: ListResponse<Location>;
-    private locationsChanged!: Subscription; //TODO: fix this
+    private locationsChanged!: Subscription;
   
     locationsCountPerPage = COUNT_PER_PAGE;
   

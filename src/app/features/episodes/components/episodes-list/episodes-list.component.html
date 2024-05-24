@@ -6,9 +6,13 @@
 <mat-paginator [length]="response.info.count" [pageSize]="episodesCountPerPage" (page)="handlePageEvent($event)">
 </mat-paginator>
 <div class="list">
+    <button mat-flat-button (click)="reset()">Reset</button>
     <mat-selection-list (selectionChange)="onSelect($event)">
         @for (episode of response.results; track $index) {
             <app-episode-item [episode]="episode"></app-episode-item>
+        }
+        @empty {
+            <p>No episodes found.</p>
         }
     </mat-selection-list>
 </div>

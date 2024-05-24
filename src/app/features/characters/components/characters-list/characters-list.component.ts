@@ -33,7 +33,7 @@ import { SearchComponent } from '../../../../shared/components/search/search.com
 export class CharactersListComponent implements OnInit, OnDestroy {
   public response!: ListResponse<Character>;
   public favouriteCharacters: ListResponse<Character>;
-  private charactersChanged!: Subscription; //TODO: fix this
+  private charactersChanged!: Subscription;
   private favouriteCharacterChanged!: Subscription;
 
   charactersCountPerPage = COUNT_PER_PAGE;
